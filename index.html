@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>محمد سلومة – وريث الصمت</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#070a0e;color:#eee;font-family:Arial,sans-serif}
+.hero{min-height:300px;padding:55px 22px 28px;display:flex;flex-direction:column;justify-content:end;
+background:linear-gradient(180deg,rgba(0,0,0,.05),#070a0e),radial-gradient(circle at 50% 30%,#3d4248,#101419 55%,#070a0e)}
+h1{font-size:32px;margin:0 0 7px}.sub{font-size:21px;color:#ddd}.tag{margin-top:16px;color:#aaa;line-height:1.8}
+.about,.card{margin:14px 16px;padding:20px;border:1px solid #30353b;border-radius:20px;background:#101419}
+.about h2{margin:0 0 10px}.about p{color:#bbb;line-height:1.9;margin:0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px 16px}
+.card{margin:0;min-height:145px;display:flex;flex-direction:column;justify-content:end;cursor:pointer}
+.icon{font-size:30px;margin-bottom:12px}.card h3{margin:0 0 5px;font-size:19px}.card p{margin:0;color:#999;font-size:13px}
+.links{display:flex;justify-content:space-around;padding:16px;border-top:1px solid #222;color:#ddd}
+.links button{background:none;border:0;color:#ddd;font-size:13px}.nav{position:sticky;bottom:0;background:#090c10;border-top:1px solid #252a30;display:flex;justify-content:space-around;padding:12px 4px}
+.nav button{background:none;border:0;color:#aaa;font-size:12px}.nav button.active{color:#e6b65a}
+.page{display:none;padding-bottom:80px}.page.active{display:block}
+.back{margin:18px 16px;padding:12px;border-radius:12px;background:#171c21;border:1px solid #30353b;color:#eee;width:calc(100% - 32px)}
+.content{padding:0 18px;color:#bbb;line-height:2}.content h2{color:#fff}
+</style>
+</head>
+<body>
+<section id="home" class="page active">
+<div class="hero"><h1>محمد سلومة</h1><div class="sub">وريث الصمت</div><div class="tag">كلمات · أبحاث · أفكار<br>من أجل عالم أكثر وعيًا</div></div>
+<div class="about"><h2>عن الكاتب</h2><p>محمد سلومة.. باحث وكاتب يسعى من خلال أعماله إلى طرح أفكار عميقة ورؤية مختلفة للحياة والإنسان والمجتمع.</p></div>
+<div class="grid">
+<div class="card" onclick="show('books')"><div class="icon">📚</div><h3>الكتب</h3><p>اقرأ وتعمق في الفكر</p></div>
+<div class="card" onclick="show('research')"><div class="icon">📜</div><h3>الأبحاث</h3><p>دراسات وأفكار وبحوث</p></div>
+<div class="card" onclick="show('behind')"><div class="icon">✒️</div><h3>خلف الصمت</h3><p>خواطر من القلب والعقل</p></div>
+<div class="card" onclick="show('why')"><div class="icon">🧠</div><h3>لماذا نثق في البشر؟</h3><p>سؤال.. يستحق التفكير</p></div>
+<div class="card" onclick="openSite()"><div class="icon">🌐</div><h3>موقع الكاتب</h3><p>تصفح الموقع على الإنترنت</p></div>
+<div class="card" onclick="show('contact')"><div class="icon">💬</div><h3>تواصل معنا</h3><p>تابعنا وتواصل معنا</p></div>
+</div>
+<div class="links"><button onclick="openSite()">🌐 الموقع</button><button onclick="show('contact')">💬 تواصل</button><button onclick="show('books')">📖 الكتب</button></div>
+</section>
+
+<section id="books" class="page"><button class="back" onclick="show('home')">← الرئيسية</button><div class="content"><h2>الكتب</h2><p>هنا ستجد كتب محمد سلومة وإصداراته، مع إمكانية إضافة روابط القراءة والتحميل لكل كتاب.</p><p>سيتم إضافة الملفات والروابط هنا عند تجهيزها.</p></div></section>
+<section id="research" class="page"><button class="back" onclick="show('home')">← الرئيسية</button><div class="content"><h2>الأبحاث</h2><p>قسم مخصص للأبحاث والدراسات والأعمال الفكرية.</p></div></section>
+<section id="behind" class="page"><button class="back" onclick="show('home')">← الرئيسية</button><div class="content"><h2>خلف الصمت</h2><p>مساحة للخواطر والأفكار التي تنشأ خلف الصمت، بصياغة فلسفية وتأملية.</p></div></section>
+<section id="why" class="page"><button class="back" onclick="show('home')">← الرئيسية</button><div class="content"><h2>لماذا نثق في البشر؟</h2><p>موضوع فكري يفتح باب التساؤل حول الثقة والإنسان والعلاقات بين البشر.</p></div></section>
+<section id="contact" class="page"><button class="back" onclick="show('home')">← الرئيسية</button><div class="content"><h2>تواصل معنا</h2><p>يمكن إضافة روابط Facebook وWhatsApp والوسائل الأخرى هنا.</p><p>رابط الموقع: sites.google.com/view/mohamed-slomah</p></div></section>
+
+<nav class="nav"><button class="active" onclick="show('home')">⌂<br>الرئيسية</button><button onclick="show('books')">▣<br>الكتب</button><button onclick="show('research')">▤<br>الأبحاث</button><button onclick="show('behind')">✒<br>خلف الصمت</button><button onclick="show('contact')">☰<br>المزيد</button></nav>
+<script>
+function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function openSite(){location.href='https://sites.google.com/view/mohamed-slomah'}
+</script>
+</body></html>
