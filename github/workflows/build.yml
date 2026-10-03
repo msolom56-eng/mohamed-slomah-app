@@ -22,21 +22,18 @@ jobs:
         with:
           gradle-version: '8.7'
 
-      - name: Extract Android project
+      - name: Extract project
         run: |
           mkdir project
-          unzip -q *.zip -d project
-          echo "Extracted:"
-          find project -name settings.gradle.kts -o -name build.gradle.kts
+          unzip -q Mohamed_Slomah_Heir_of_Silence_Android_Project.zip -d project
 
       - name: Build APK
         run: |
-          PROJECT_DIR=$(dirname "$(find project -name settings.gradle.kts | head -1)")
-          cd "$PROJECT_DIR"
+          cd project/Mohamed_Slomah_Android
           gradle assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Mohamed-Slomah-APK
-          path: "**/build/outputs/apk/debug/*.apk"
+          path: "project/**/build/outputs/apk/debug/*.apk"
