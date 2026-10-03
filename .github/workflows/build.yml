@@ -24,45 +24,17 @@ jobs:
 
       - name: Extract Full v2 Project
         run: |
-          set -e
-
           mkdir -p project
+          unzip -q Mohamed_Slomah_Heir_of_Silence_Full_v2.zip -d project
 
-          ZIP="Mohamed_Slomah_Heir_of_Silence_Full_v2.zip"
-
-          echo "Using project: $ZIP"
-
-          test -f "$ZIP"
-
-          unzip -q "$ZIP" -d project
-
-          echo "Project extracted successfully."
-
-      - name: Find Android Project
+      - name: Build APK
         run: |
-          set -e
+          cd project/Mohamed_Slomah_Heir_of_Silence_Full_v2
+          gradle assembleDebug --no-daemon
 
-          PROJECT_DIR=$(find project -type f -name "settings.gradle.kts" -print -quit | xargs dirname)
-
-          test -n "$PROJECT_DIR"
-
-          echo "PROJECT_DIR=$PROJECT_DIR" >> "$GITHUB_ENV"
-
-          echo "Android project found at:"
-          echo "$PROJECT_DIR"
-
-      - name: Fix Java and Kotlin Compatibility
-        run: |
-          set -e
-
-          FILE="$PROJECT_DIR/app/build.gradle.kts"
-
-          test -f "$FILE"
-
-          if ! grep -q "sourceCompatibility = JavaVersion.VERSION_17" "$FILE"; then
-            sed -i '/android {/a\
-                compileOptions {\
-                    sourceCompatibility = JavaVersion.VERSION_17\
-                    targetCompatibility = JavaVersion.VERSION_17\
-                }' "$FILE"
-         
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mohamed-Slomah-App-v2
+          path: "project/Mohamed_Slomah_Heir_of_Silence_Full_v2/app/build/outputs/apk/debug/*.apk"
+          if-no-files-found: error
