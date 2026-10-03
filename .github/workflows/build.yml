@@ -24,12 +24,23 @@ jobs:
 
       - name: Extract project
         run: |
-          mkdir project
-          unzip -q Mohamed_Slomah_Heir_of_Silence_Android_Project.zip -d project
+          mkdir -p project
+          ZIP=$(find . -maxdepth 1 -type f -name '*.zip' | head -n 1)
+          unzip -q "$ZIP" -d project
+
+      - name: Fix Java compatibility
+        run: |
+          PROJECT_DIR=$(find project -type f -name settings.gradle.kts -print -quit | xargs dirname)
+          sed -i '/android {/a\
+              compileOptions {\
+                  sourceCompatibility = JavaVersion.VERSION_17\
+                  targetCompatibility = JavaVersion.VERSION_17\
+              }' "$PROJECT_DIR/app/build.gradle.kts"
 
       - name: Build APK
         run: |
-          cd project/Mohamed_Slomah_Android
+          PROJECT_DIR=$(find project -type f -name settings.gradle.kts -print -quit | xargs dirname)
+          cd "$PROJECT_DIR"
           gradle assembleDebug --no-daemon
 
       - name: Upload APK
